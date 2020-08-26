@@ -69,13 +69,13 @@
         }
     },
     "required": [
-        "Name",
+        "Repo",
         "Owner",
         "Token",
         "PayloadURL"
     ],
     "createOnlyProperties": [
-        "/properties/Name",
+        "/properties/Repo",
         "/properties/Owner"
     ],
     "readOnlyProperties": [
