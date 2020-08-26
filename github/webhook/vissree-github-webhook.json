@@ -1,0 +1,101 @@
+{
+    "typeName": "Vissree::GitHub::Webhook",
+    "description": "Manages a Github webhook",
+    "sourceUrl": "https://github.com/vissree/cfn-resource-providers.git",
+    "definitions": {},
+    "additionalProperties": false,
+    "definitions": {
+        "httpsUrl": {
+            "type": "string",
+            "pattern": "^https://[0-9a-zA-Z]([-.\\w]*[0-9a-zA-Z])(:[0-9]*)*([?/#].*)?$",
+            "maxLength":  4096
+        },
+        "hookUrl": {
+            "type": "string",
+            "pattern": "^https://api\\.github\\.com/repos/([-\\w]+/){2}hooks/\\d{9}$"
+        }
+    },
+    "properties": {
+        "Repo": {
+            "description": "Name of the GitHub repository",
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50
+        },
+        "Owner": {
+            "description": "Location of the repository, either an organization or a user name",
+            "type": "string"
+        },
+        "Token": {
+            "description": "Oauth or Personal access token",
+            "type": "string"
+        },
+        "PayloadURL": {
+            "description": "Payload Url for the webhook",
+            "$ref": "#/definitions/httpsUrl"
+        },
+        "ContentType": {
+            "description": "The media type used to serialize the payloads. Supported values include json and form",
+            "type": "string",
+            "enum": [
+                "json",
+                "form"    
+            ],
+            "default": "json"
+        },
+        "Secret": {
+            "description": "Optional secret to pass to the Payload Url",
+            "type": "string"
+        },
+        "InsecureSSL": {
+            "description": "Enable SSL verification for Payload Url",
+            "type": "boolean"
+        },
+        "Events": {
+            "description": "List of events the hook is triggered for",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "Active": {
+            "description": "Enabled notifications to be sent when the webhook is triggered",
+            "type": "boolean",
+            "default": true
+        },
+        "WebhookURL": {
+            "description": "Webhook Url",
+            "$ref": "#/definitions/hookUrl"
+        }
+    },
+    "required": [
+        "Name",
+        "Owner",
+        "Token",
+        "PayloadURL"
+    ],
+    "createOnlyProperties": [
+        "/properties/Name",
+        "/properties/Owner"
+    ],
+    "readOnlyProperties": [
+        "/properties/WebhookURL"
+    ],
+    "primaryIdentifier": [
+        "/properties/WebhookURL"
+    ],
+    "handlers": {
+        "create": {
+            "permissions": []
+        },
+        "read": {
+            "permissions": []
+        },
+        "update": {
+            "permissions": []
+        },
+        "delete": {
+            "permissions": []
+        }
+    }
+}
