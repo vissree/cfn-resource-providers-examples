@@ -45,6 +45,18 @@ Open a terminal and start a local lambda server
 $ sam local start-lambda
 ```
 
+Create and overrides file to specify the Repo, Owner, Token and Events properties. The random values generated from the patterns in the resource's property definitions will not work for the above properties. Name the file as `overrides.json` and save it at the root of the project.
+```json
+{
+    "CREATE": {
+        "/Repo": "repo-name",
+        "/Owner": "org-or-user-name",
+        "/Token": "xxxxxpersonalaccesstokenxxxx",
+        "/Events": ["issues"]
+    }
+}
+```
+
 Build the model and run the contract tests.
 ```
 $ make clean && make build && cfn submit --dry-run
