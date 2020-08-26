@@ -1,13 +1,72 @@
 # Vissree::GitHub::Webhook
+This is a sample CloudFormation resource provider for managing Github Webhooks.
 
-Congratulations on starting development!
+## Build
+```
+$ make clean && make build
+```
 
-Next steps:
+## Local tests
+Create a sample event json file in the below format.
 
-1. Populate the JSON schema describing your resource, `vissree-github-webhook.json`
-2. The RPDK will automatically generate the correct resource model from the
-   schema whenever the project is built via Make.
-   You can also do this manually with the following command: `cfn-cli generate`
-3. Implement your resource handlers by adding code to provision your resources in your resource handler's methods.
+```json
+{
+  "callbackContext": null,
+  "action": "CREATE",
+  "request": {
+      "clientRequestToken": "91784c24-be70-4226-8158-2375d4f812ce",
+      "desiredResourceState": {
+            "Active": true,
+            "ContentType": "json",
+            "Events": [
+                    "push"
+                  ],
+            "InsecureSSL": false,
+            "Owner": "org-or-user-name",
+            "PayloadURL": "https://sample.url",
+            "Repo": "repo-name",
+            "Secret": "",
+            "Token": "xxxxxpersonalaccesstokenxxxx"
+          },
+      "previousResourceState": null,
+      "logicalResourceIdentifier": null
+    }
+}
+```
 
-Please don't modify files `model.go and main.go`, as they will be automatically overwritten.
+Run the local test using the event json file.
+```
+$ sam local invoke TestEntrypoint --event path/to/event.json
+```
+
+## Contract tests
+Open a terminal and start a local lambda server
+```
+$ sam local start-lambda
+```
+
+Build the model and run the contract tests.
+```
+$ make clean && make build && cfn submit --dry-run
+$ cfn test
+```
+
+Check the official ![documentation](https://github.com/aws-cloudformation/cloudformation-cli) for CloudFormation CLI for more options.
+
+## Deploy
+```
+$ make deploy
+$ cfn submit
+```
+
+## Properties
+| Name        | Description                                   | Required | Default  |
+|-------------|-----------------------------------------------|----------|----------|
+| Repo        | Repository name                               | Yes      |          |
+| Owner       | Organization/Username                         | Yes      |          |
+| Token       | Oauth/Personal access token                   | Yes      |          |
+| PayloadURL  | URL to which event payloads will be delivered | Yes      |          |
+| Secret      | The key to generate X-Hub-Signature header    | No       |          |
+| InseruceSSL | Enable/Disable SSL verification               | No       | false    |
+| Events      | The events for which hook is triggered for    | No       | ["push"] |
+| Active      | Enable/Disable the hook                       | No       | true     |
