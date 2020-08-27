@@ -79,6 +79,6 @@ $ cfn submit
 | Token       | Oauth/Personal access token                   | Yes      |          |
 | PayloadURL  | URL to which event payloads will be delivered | Yes      |          |
 | Secret      | The key to generate X-Hub-Signature header    | No       |          |
-| InseruceSSL | Enable/Disable SSL verification               | No       | false    |
+| InsecureSSL | Enable/Disable SSL verification               | No       | false    |
 | Events      | The events for which hook is triggered for    | No       | ["push"] |
 | Active      | Enable/Disable the hook                       | No       | true     |
