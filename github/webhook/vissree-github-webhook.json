@@ -11,8 +11,8 @@
             "maxLength":  4096
         },
         "hookUrl": {
-            "type": "string",
-            "pattern": "^https://api\\.github\\.com/repos/([-\\w]+/){2}hooks/\\d{9}$"
+            "pattern": "^https://api\\.github\\.com/repos/([-\\w]+/){2}hooks/\\d{9}$",
+            "type": "string"
         }
     },
     "properties": {
