@@ -72,13 +72,13 @@ $ cfn submit
 ```
 
 ## Properties
-| Name        | Description                                   | Required | Default  |
-|-------------|-----------------------------------------------|----------|----------|
-| Repo        | Repository name                               | Yes      |          |
-| Owner       | Organization/Username                         | Yes      |          |
-| Token       | Oauth/Personal access token                   | Yes      |          |
-| PayloadURL  | URL to which event payloads will be delivered | Yes      |          |
-| Secret      | The key to generate X-Hub-Signature header    | No       |          |
-| InsecureSSL | Enable/Disable SSL verification               | No       | false    |
-| Events      | The events for which hook is triggered for    | No       | ["push"] |
-| Active      | Enable/Disable the hook                       | No       | true     |
+| Name        | Type    | Description                                   | Required | Default  |
+|-------------|---------|-----------------------------------------------|----------|----------|
+| Repo        | String  | Repository name                               | Yes      |          |
+| Owner       | String  | Organization/Username                         | Yes      |          |
+| Token       | String  | Oauth/Personal access token                   | Yes      |          |
+| PayloadURL  | String  | URL to which event payloads will be delivered | Yes      |          |
+| Secret      | String  | The key to generate X-Hub-Signature header    | No       |          |
+| InsecureSSL | Boolean | Enable/Disable SSL verification               | No       | false    |
+| Events      | Array   | The events for which hook is triggered for    | No       | ["push"] |
+| Active      | Boolean | Enable/Disable the hook                       | No       | true     |
