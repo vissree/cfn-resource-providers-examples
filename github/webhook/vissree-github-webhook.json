@@ -2,7 +2,6 @@
     "typeName": "Vissree::GitHub::Webhook",
     "description": "Manages a Github webhook",
     "sourceUrl": "https://github.com/vissree/cfn-resource-providers.git",
-    "definitions": {},
     "additionalProperties": false,
     "definitions": {
         "httpsUrl": {
